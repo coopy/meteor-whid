@@ -1,4 +1,7 @@
-/* CSS declarations go here */
+#wrapper {
+    max-width: 35em;
+    margin: 0 auto;
+}
 
 .tasks {
     list-style-type: none;
@@ -6,9 +9,9 @@
 
 #drag_handle {
     cursor: move;
-    padding: 0px 0px 15px;
+    padding: 0 0 15px;
 }
 
 .tasks .done {
-    color: green;
+    color: #24BD24;
 }
