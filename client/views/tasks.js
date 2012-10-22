@@ -20,9 +20,9 @@ Template.tasks.rendered = function(){
             cancel:      'li.well',
             axis:        'y',
             update:      function(e) {
+                // Figure out which direction handle moved
                 if ($handle.next().hasClass('done')) {
                     // Moved back - unComplete some tasks
-                    console.log('Handle moved backward');
                     $handle.nextAll('.done').each(function(_i, el){
                         // @TODO remove hard wiring - fire an event with IDs in data instead
                         Task.unComplete(el.id);
@@ -30,7 +30,6 @@ Template.tasks.rendered = function(){
 
                 } else {
                     // Complete tasks
-                    console.log('Handle moved forward');
                     $handle.prevAll(':not(.done)').each(function(_i, el){
                         // @TODO remove hard wiring - fire an event with IDs in data instead
                         Task.complete(el.id);

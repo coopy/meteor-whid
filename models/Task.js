@@ -34,7 +34,6 @@ if (Meteor.isServer) {
             return Tasks.update({_id: taskId, completedAt: null}, {$set: {completedAt: Date.now()}});
         },
         unCompleteTask: function (taskId) {
-            console.log('unCompleting task with id ', taskId);
             //@TODO try using an instance method task.complete() - does it get server time?
             return Tasks.update({_id: taskId, completedAt: {$ne: null}}, {$set: {completedAt: null}});
         }
