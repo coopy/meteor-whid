@@ -3,36 +3,5 @@
 </head>
 
 <body>
-    {{> list}}
+    {{> main}}
 </body>
-
-<template name="list">
-    <h1>Today is {{date}}</h1>
-    {{> tasks}}
-    <input type="button" name="add_task" value="Add Task" />
-</template>
-
-<template name="tasks">
-
-    <ul class="tasks">
-    {{# each done_tasks}}
-        {{> task}}
-    {{/each}}
-
-    {{> handle}}
-
-    {{# each todo_tasks}}
-        {{> task}}
-    {{/each}}
-    </ul>
-</template>
-
-<template name="handle">
-    <li id="drag_handle">
-        <img src="/ugly_handle.png"/>
-    </li>
-</template>
-
-<template name="task">
-    <li class="well {{# if completedAt}}done{{/if}}" id="{{_id}}">{{text}}</li>
-</template>
