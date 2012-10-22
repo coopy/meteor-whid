@@ -1,0 +1,37 @@
+<head>
+    <title>What Have I Done - Task Management for the Busy</title>
+</head>
+
+<body>
+    {{> list}}
+</body>
+
+<template name="list">
+    <h1>Today is {{date}}</h1>
+    {{> done_tasks}}
+    {{> todo_tasks}}
+    <input type="button" name="add_task" value="Add Task" />
+</template>
+
+<template name="done_tasks">
+    <ul class="tasks" id="done_tasks">
+    {{# each tasks}}
+        {{> task}}
+    {{/each}}
+    </ul>
+</template>
+
+<template name="todo_tasks">
+    <ul class="tasks" id="todo_tasks">
+        <li id="drag_handle">
+            <img src="/ugly_handle.png"/>
+        </li>
+    {{# each tasks}}
+        {{> task}}
+    {{/each}}
+    </ul>
+</template>
+
+<template name="task">
+    <li class="well" id="{{_id}}">{{text}}</li>
+</template>

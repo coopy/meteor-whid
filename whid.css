@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+
+.tasks {
+    list-style-type: none;
+}
+
+#drag_handle {
+    cursor: move;
+}
+
+#todo_tasks li {
+    color: red;
+}
+
+#done_tasks li {
+    color: green;
+}
