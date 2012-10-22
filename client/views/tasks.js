@@ -1,5 +1,9 @@
 var $handle,
-    $doneEls;
+    $doneEls,
+    now = new Date(),
+    today = new Date(now.getFullYear(), now.getMonth(), now.getDate()),
+    nowTs = now.getTime(),
+    todayTs = today.getTime();
 
 //@TODO Why isn't the handle preserved?
 Template.tasks.preserve(['#drag_handle']);
@@ -52,11 +56,10 @@ Template.tasks.rendered = function(){
 // Find tasks that have a completedAt timestamp set.
 // @TODO consider using Meteor.renderList instead - http://docs.meteor.com/#meteor_renderlist
 Template.tasks.done_tasks = function() {
-    var ptr = Tasks.find({completedAt: {$ne: null}}, {sort: ['createdAt', 'asc']});
-    return ptr;
+    return Tasks.find({completedAt: {$ne: null}, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
 };
 
 // Find tasks that do not have a completedAt timestamp set.
 Template.tasks.todo_tasks = function() {
-    return Tasks.find({completedAt: null}, {sort: ['createdAt', 'asc']});
+    return Tasks.find({completedAt: null, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
 };
