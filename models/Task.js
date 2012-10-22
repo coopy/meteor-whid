@@ -9,6 +9,10 @@ var Task = function(text) {
 
 // STATIC
 
+Task.create = function(text) {
+    Meteor.call('createTask', text);
+};
+
 Task.complete = function(id) {
     Meteor.call('completeTask', id);
 };

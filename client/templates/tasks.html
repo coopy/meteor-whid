@@ -1,5 +1,4 @@
 <template name="tasks">
-
     <ul class="tasks">
     {{# each done_tasks}}
         {{> task}}
@@ -10,5 +9,7 @@
     {{# each todo_tasks}}
         {{> task}}
     {{/each}}
+
+    {{> add_task}}
     </ul>
 </template>
