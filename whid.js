@@ -15,21 +15,15 @@ if (Meteor.isClient) {
     });
 
     // Find tasks that have a completedAt timestamp set.
-    Template.done_tasks.tasks = function() {
-        var ptr = Tasks.find({
-            completedAt: {
-                $ne: null
-            }
-        });
-        console.log(ptr);
+    // @TODO consider using Meteor.renderList instead - http://docs.meteor.com/#meteor_renderlist
+    Template.tasks.done_tasks = function() {
+        var ptr = Tasks.find({completedAt: {$ne: null}}, {sort: ['createdAt', 'asc']});
         return ptr;
     };
 
     // Find tasks that do not have a completedAt timestamp set.
-    Template.todo_tasks.tasks = function() {
-        return Tasks.find({
-            completedAt: null
-        });
+    Template.tasks.todo_tasks = function() {
+        return Tasks.find({completedAt: null}, {sort: ['createdAt', 'asc']});
     };
 }
 
@@ -39,24 +33,9 @@ if (Meteor.isServer) {
 
         // TEMP: fixtures
         Tasks.remove({});
-        Meteor.call('createTask', 'First sample TODO task');
-        Meteor.call('createTask', 'Second sample TODO task');
         var doneTaskId = Meteor.call('createTask', 'Sample DONE task');
         Meteor.call('completeTask', doneTaskId);
-    });
-
-    // Add functionality
-    Meteor.methods({
-        createTask: function (text) {
-            var task = new Task(text);
-            task.createdAt = Date.now(); // ms since epoch
-            return Tasks.insert(task);
-        },
-        completeTask: function (taskId) {
-            //@TODO try using an instance method task.complete() - does it get server time?
-            return Tasks.update({_id: taskId}, {$set: {completedAt: Date.now()}});
-        }
+        Meteor.call('createTask', 'First sample TODO task');
+        Meteor.call('createTask', 'Second sample TODO task');
     });
 }
-
-

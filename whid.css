@@ -6,12 +6,9 @@
 
 #drag_handle {
     cursor: move;
+    padding: 0px 0px 15px;
 }
 
-#todo_tasks li {
-    color: red;
-}
-
-#done_tasks li {
+.tasks .done {
     color: green;
 }

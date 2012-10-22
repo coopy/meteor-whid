@@ -1,26 +1,40 @@
-Template.done_tasks.rendered = function(){
-    var $handle = $('#drag_handle');
-    $('ul.tasks').sortable({
-        connectWith: '.tasks',
-        // Do not allow sorting of tasks
-        cancel:      'li.well',
-        axis:        'y',
-        update:      function(e) {
-            // console.log($handle.siblings());
-            var listId = $handle.parent().attr('id');
-            console.log(listId);
-            if (listId === 'todo_tasks') {
-                // The handle was dropped in TODO list. complete some tasks.
-                $handle.prevAll().each(function(index, el){
-                    console.log(el.id);
-                });
-            } else {
-                // The handle was dropped in DONE list; un-complete some tasks.
-                $handle.nextAll().each(function(index, el){
-                    console.log(el.id);
-                });
-            }
-        }
+var $handle,
+    $doneEls;
 
-    });
+Template.tasks.rendered = function(){
+    if (!$handle) {
+        $handle = $('#drag_handle');
+        $('.tasks').sortable({
+            connectWith: '.tasks',
+            // Do not allow sorting of tasks
+            cancel:      'li.well',
+            axis:        'y',
+            update:      function(e) {
+                if ($handle.next().hasClass('done')) {
+                    // Moved back - unComplete some tasks
+                    console.log('Handle moved backward');
+                    $handle.nextAll('.done').each(function(_i, el){
+                        Task.unComplete(el.id);
+                    });
+
+                } else {
+                    // Complete tasks
+                    console.log('Handle moved forward');
+                    $handle.prevAll(':not(.done)').each(function(_i, el){
+                        Task.complete(el.id);
+                    });
+                }
+            }
+
+        });
+    } else if ($('#drag-handle').length === 0) {
+        // Template re-rendered, and the handle has been removed
+        // @TODO why isn't the handle re-rendered as it is part of the template?
+        $doneEls = $('.done');
+        if ($doneEls.length > 0) {
+            $doneEls.last().after($handle);
+        } else {
+            $('.tasks .well').first().before($handle);
+        }
+    }
 };

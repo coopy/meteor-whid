@@ -8,30 +8,31 @@
 
 <template name="list">
     <h1>Today is {{date}}</h1>
-    {{> done_tasks}}
-    {{> todo_tasks}}
+    {{> tasks}}
     <input type="button" name="add_task" value="Add Task" />
 </template>
 
-<template name="done_tasks">
-    <ul class="tasks" id="done_tasks">
-    {{# each tasks}}
+<template name="tasks">
+
+    <ul class="tasks">
+    {{# each done_tasks}}
+        {{> task}}
+    {{/each}}
+
+    {{> handle}}
+
+    {{# each todo_tasks}}
         {{> task}}
     {{/each}}
     </ul>
 </template>
 
-<template name="todo_tasks">
-    <ul class="tasks" id="todo_tasks">
-        <li id="drag_handle">
-            <img src="/ugly_handle.png"/>
-        </li>
-    {{# each tasks}}
-        {{> task}}
-    {{/each}}
-    </ul>
+<template name="handle">
+    <li id="drag_handle">
+        <img src="/ugly_handle.png"/>
+    </li>
 </template>
 
 <template name="task">
-    <li class="well" id="{{_id}}">{{text}}</li>
+    <li class="well {{# if completedAt}}done{{/if}}" id="{{_id}}">{{text}}</li>
 </template>
