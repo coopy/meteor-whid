@@ -55,10 +55,12 @@ Template.tasks.rendered = function(){
 // Find tasks that have a completedAt timestamp set.
 // @TODO consider using Meteor.renderList instead - http://docs.meteor.com/#meteor_renderlist
 Template.tasks.done_tasks = function() {
-    return Tasks.find({completedAt: {$ne: null}, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
+    return Tasks.find({completedAt: {$ne: null}}, {sort: ['createdAt', 'asc']});
+    // return Tasks.find({completedAt: {$ne: null}, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
 };
 
 // Find tasks that do not have a completedAt timestamp set.
 Template.tasks.todo_tasks = function() {
-    return Tasks.find({completedAt: null, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
+    return Tasks.find({completedAt: null}, {sort: ['createdAt', 'asc']});
+    // return Tasks.find({completedAt: null, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
 };
