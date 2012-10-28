@@ -15,3 +15,14 @@
 .tasks .done {
     color: #24BD24;
 }
+
+/* Smartphone */
+@media screen and (max-width: 640px) {
+    #wrapper {
+        max-width: none;
+        width: 100%;
+    }
+    .tasks {
+        margin: 0 1em;
+    }
+}
