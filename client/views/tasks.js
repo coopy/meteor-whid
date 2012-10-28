@@ -38,29 +38,39 @@ Template.tasks.rendered = function(){
             }
 
         });
-    } else if ($('#drag-handle').length === 0) {
-        // Template re-rendered, and the handle has been removed; re-insert it (see line 4).
-        $doneEls = $('.done');
-        if ($doneEls.length > 0) {
-            $doneEls.last().after($handle);
-        } else {
-            $('.tasks .well').first().before($handle);
-        }
+    }
+    // Template re-rendered, and the handle has been removed; re-insert it (see line 4).
+    $doneEls = $('.done');
+    if ($doneEls.length > 0) {
+        $doneEls.last().after($handle);
+    } else {
+        $('.tasks .well').first().before($handle);
     }
 };
 
 // View data
 // *********
 
+Template.tasks.todays_tasks = function() {
+    return Tasks.find({createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
+};
+
+
 // Find tasks that have a completedAt timestamp set.
 // @TODO consider using Meteor.renderList instead - http://docs.meteor.com/#meteor_renderlist
 Template.tasks.done_tasks = function() {
-    return Tasks.find({completedAt: {$ne: null}}, {sort: ['createdAt', 'asc']});
+    // var doneTasks = Tasks.find({text: 'Complete'}, {sort: ['createdAt', 'asc']});
+    var doneTasks = Tasks.find({completedAt: {$ne: null}}, {sort: ['createdAt', 'asc']});
+    // console.log('* done_tasks', doneTasks);
+    return doneTasks;
     // return Tasks.find({completedAt: {$ne: null}, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
 };
 
 // Find tasks that do not have a completedAt timestamp set.
 Template.tasks.todo_tasks = function() {
-    return Tasks.find({completedAt: null}, {sort: ['createdAt', 'asc']});
+    var todoTasks = Tasks.find({completedAt: null}, {sort: ['createdAt', 'asc']});
+    // var todoTasks = Tasks.find({}, {sort: ['createdAt', 'asc']});
+    // console.log('* todo_tasks', todoTasks);
+    return todoTasks;
     // return Tasks.find({completedAt: null, createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
 };
