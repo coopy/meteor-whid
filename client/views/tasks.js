@@ -6,18 +6,21 @@ var $handle,
     todayTs = today.getTime();
 
 //@TODO Why isn't the handle preserved?
-Template.tasks.preserve(['#drag_handle']);
+// Template.tasks.preserve(['#drag_handle']);
 
 // View event handlers
 // *******************
 
 Template.tasks.rendered = function(){
+    console.log('done_tasks:',Template.tasks.done_tasks().collection.docs);
+    console.log('todo_tasks:',Template.tasks.todo_tasks().collection.docs);
+    // Initialize handle
     if (!$handle) {
         $handle = $('#drag_handle');
         $('.tasks').sortable({
             connectWith: '.tasks',
             // Do not allow sorting of tasks
-            cancel:      'li.well',
+            //cancel:      'li.well',
             axis:        'y',
             update:      function(e) {
                 // Figure out which direction handle moved
