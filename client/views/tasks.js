@@ -42,7 +42,7 @@ Template.tasks.rendered = function(){
 
 var gettasksFilter = function() {
     if (Session.equals('tasksFilter', undefined)) {
-        return {$or: [{createdAt: {$gt: todayTs}}, {completedAt: null}]};
+        return {$or: [{completedAt: {$gt: todayTs}}, {completedAt: null}]};
     }
     return Session.get('tasksFilter');
 };

@@ -31,9 +31,9 @@ var handleClickNav = function(e) {
     Session.set('tasksFilterTs', currentDayTs);
 
     if (includeTodos) {
-        Session.set('tasksFilter', {$or: [{createdAt: {$gt: currentDayTs, $lt: nextDayTs}}, {completedAt: null}]});
+        Session.set('tasksFilter', {$or: [{completedAt: {$gt: currentDayTs, $lt: nextDayTs}}, {completedAt: null}]});
     } else {
-        Session.set('tasksFilter', {createdAt: {$gt: currentDayTs, $lt: nextDayTs}, completedAt: {$ne: null}});
+        Session.set('tasksFilter', {completedAt: {$gt: currentDayTs, $lt: nextDayTs, $ne: null}});
     }
 };
 
