@@ -25,7 +25,7 @@ h1 {
 }
 
 #handle {
-    cursor: move;
+    cursor: row-resize;
     padding: 0 0 15px;
     position: relative;
 }
