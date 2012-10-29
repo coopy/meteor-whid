@@ -1,7 +1,7 @@
 <template name="nav">
     <ul class="nav nav-pills">
         <li class="back pull-left"><a href="#">Back one day</a></li>
-        <li class="today"><a href="#">Today</a></li>
+        <li class="today{{# if is_today}} active{{/if}}"><a href="#">Today</a></li>
         <li class="forward pull-right{{# if is_today}} disabled{{/if}}"><a href="#">Forward one day</a></li>
     </ul>
 </template>
