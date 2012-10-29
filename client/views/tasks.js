@@ -20,7 +20,7 @@ Template.tasks.rendered = function(){
         $('.tasks').sortable({
             connectWith: '.tasks',
             // Do not allow sorting of tasks
-            //cancel:      'li.well',
+            cancel:      'li.well',
             axis:        'y',
             update:      function(e) {
                 // Figure out which direction handle moved
