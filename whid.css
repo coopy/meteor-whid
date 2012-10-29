@@ -8,20 +8,13 @@ h1 {
     text-align: center;
 }
 
-#nav {
-    margin-bottom: 1em;
-    text-align: center;
-    list-style-type: none;
-    margin: 0 0 3em 0;
+.nav {
+    position: relative;
 }
 
-#nav li {
-    display: inline;
-    margin-right: 5em;
-}
-
-#nav li.last {
-    margin: 0;
+.today {
+    position: absolute;
+    left:40%;
 }
 
 #handle {
@@ -72,18 +65,6 @@ h1 {
 
 .add_task input {
     width: 97%;
-}
-
-.selected {
-    text-decoration: underline;
-}
-
-a.noclick {
-    color: #aaa;
-    cursor: default;
-}
-a.noclick:hover {
-    text-decoration:none;
 }
 
 /* Smartphone */

@@ -8,29 +8,20 @@ var handleClickNav = function(e) {
         includeTodos = false;
 
     // Move timestamp pointer
-    if ($target.hasClass('back')) {
+    if ($target.parent().hasClass('back')) {
         // Navigate back one day
-        $('#nav .forward').removeClass('noclick');
         currentDayTs -= oneDayMs;
-
-    } else if ($target.hasClass('forward')) {
-        // Disallow navigating to the future (Until there is logic to render future tasks properly)
-        if (currentDayTs === thisDayTs) {
-            return;
-        }
+    } else if ($target.parent().hasClass('forward') && !$target.parent().hasClass('disabled')) {
         // Navigate one day forward
         currentDayTs += oneDayMs;
-
-        // Disallow navigating to the future (Until there is logic to render future tasks properly)
-        if (currentDayTs === thisDayTs) {
-            $('#nav .forward').addClass('noclick');
-        }
-
     } else {
         // Navigate to today
         currentDayTs = thisDayTs;
+    }
+
+    // Include any undone task in today's view
+    if (currentDayTs === thisDayTs) {
         includeTodos = true;
-        $('#nav .forward').addClass('noclick');
     }
 
     // Bracket the search
@@ -44,11 +35,12 @@ var handleClickNav = function(e) {
     } else {
         Session.set('tasksFilter', {createdAt: {$gt: currentDayTs, $lt: nextDayTs}, completedAt: {$ne: null}});
     }
+};
 
-    // Remove selected marker
-    $('#nav a').removeClass('selected');
-    // Select clicked link
-    $target.addClass('selected');
+// Hack because the nav template re-renders, losing state.
+// Hence, need to know about state in template.
+Template.nav.is_today = function() {
+    return Session.equals('tasksFilterTs', new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime());
 };
 
 Template.nav.events({
