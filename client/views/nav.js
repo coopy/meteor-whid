@@ -21,11 +21,16 @@ var handleClickNav = function(e) {
         // Navigate one day forward
         currentDayTs += oneDayMs;
 
+        // Disallow navigating to the future (Until there is logic to render future tasks properly)
+        if (currentDayTs === thisDayTs) {
+            $('#nav .forward').addClass('noclick');
+        }
+
     } else {
         // Navigate to today
         currentDayTs = thisDayTs;
         includeTodos = true;
-
+        $('#nav .forward').addClass('noclick');
     }
 
     // Bracket the search
@@ -51,8 +56,3 @@ Template.nav.events({
     'click .today': handleClickNav,
     'click .forward': handleClickNav
 });
-
-Template.nav.rendered = function() {
-    // Default: no forward movement
-    $('#nav .forward').addClass('noclick');
-};
