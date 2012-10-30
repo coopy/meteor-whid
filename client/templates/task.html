@@ -1,5 +1,5 @@
 <template name="task">
-    <li class="well task {{# if completedAt}}done{{/if}}" id="{{_id}}">
+    <li class="well task {{# if completedAt}}done{{else}}todo{{/if}}" id="{{_id}}">
         <button class="close">&times;</button>
         <span>{{text}}</span>
     </li>

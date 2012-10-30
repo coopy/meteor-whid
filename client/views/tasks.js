@@ -6,6 +6,8 @@ var $handle,
     nowTs = now.getTime(),
     todayTs = today.getTime();
 
+Session.set('todayTs', todayTs);
+Session.set('tasksFilterTs', todayTs);
 
 // View event handlers
 // *******************
@@ -38,7 +40,13 @@ Template.tasks.rendered = function(){
 // View data
 // *********
 
-Template.tasks.todays_tasks = function() {
-    return Tasks.find({createdAt: {$gt: todayTs}}, {sort: ['createdAt', 'asc']});
+var gettasksFilter = function() {
+    if (Session.equals('tasksFilter', undefined)) {
+        return {$or: [{createdAt: {$gt: todayTs}}, {completedAt: null}]};
+    }
+    return Session.get('tasksFilter');
 };
 
+Template.tasks.todays_tasks = function() {
+    return Tasks.find(gettasksFilter(), {sort: ['createdAt', 'asc']});
+};
