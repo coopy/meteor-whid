@@ -48,5 +48,5 @@ var gettasksFilter = function() {
 };
 
 Template.tasks.todays_tasks = function() {
-    return Tasks.find(gettasksFilter(), {sort: ['createdAt', 'asc']});
+    return Tasks.find(gettasksFilter(), {sort: [['createdAt', 'asc'],['completedAt', 'asc']]});
 };
