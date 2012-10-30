@@ -1,32 +1,53 @@
 #wrapper {
     max-width: 425px;
-    margin: 0 auto;
+    margin: 2em auto;
 }
 
-#drag_handle {
+h1 {
+    font-size: 26px;
+    text-align: center;
+}
+
+#nav {
+    margin-bottom: 1em;
+    text-align: center;
+    list-style-type: none;
+    margin: 0 0 3em 0;
+}
+
+#nav li {
+    display: inline;
+    margin-right: 5em;
+}
+
+#nav li.last {
+    margin: 0;
+}
+
+#handle {
     cursor: move;
     padding: 0 0 15px;
     position: relative;
 }
 
-#drag_handle .pull_left {
+#handle .pull_left {
     text-align: right;
     margin-left: -3em;
     font-size: 5em;
     color: #DDD;
 }
 
-#drag_handle .done {
+#handle .done {
     position: relative;
     top: -1em;
 }
 
-#drag_handle .todo {
+#handle .todo {
     position: relative;
     top: 1em;
 }
 
-#drag_handle .decorative {
+#handle .decorative {
     position: absolute;
     top: 14px;
     height: 7px;
@@ -49,8 +70,12 @@
     color: #24BD24;
 }
 
+.selected {
+    text-decoration: underline;
+}
+
 /* Smartphone */
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 425px) {
     #wrapper {
         max-width: none;
         width: 100%;
