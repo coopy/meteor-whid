@@ -1,4 +1,3 @@
-Template.main.date = function () {
-    var d = new Date();
-    return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + d.getFullYear();
+Template.main.is_today = function() {
+    return (Session.get('tasksFilterTs') === Session.get('todayTs'));
 };

@@ -3,6 +3,9 @@
         {{> nav}}
         {{> header}}
         {{> tasks}}
-        {{> actions}}
+
+        {{# if is_today}}
+            {{> actions}}
+        {{/if}}
     </div>
 </template>
