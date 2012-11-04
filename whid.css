@@ -79,17 +79,22 @@ h2 {
 }
 
 .task p {
-    padding: 5px 19px;
+    padding: 3px 19px;
     margin-bottom: 9px;
     line-height: 20px;
 }
 
 .task input[type="checkbox"] {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .tasks {
     list-style-type: none;
+}
+
+.tasks .well {
+    padding: 6px 19px 0px 19px;
+    margin-bottom:14px;
 }
 
 .tasks button {
@@ -102,15 +107,4 @@ h2 {
 
 .add_task input {
     width: 97%;
-}
-
-/* Smartphone */
-@media screen and (max-width: 425px) {
-    #wrapper {
-        max-width: none;
-        width: 100%;
-    }
-    .tasks {
-        margin: 0 1em;
-    }
 }
