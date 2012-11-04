@@ -6,14 +6,14 @@
 
 This is a little app I made for several reasons:
 
-1. To track all the little things I do every day, that I tend to forget that I did the next day.
-2. To track things that I need to do.
-3. To prototype a more interesting TODO-list interaction than checking boxes.
-4. To try out [Meteor.js][meteorjs].
+1. To track things that I need to do.
+2. To remember what I did yesterday.
+3. To demonstrate my programming and interaction design style.
+4. To try out writing an application in [Meteor.js][meteorjs].
 
 The reason I'd like to keep track of the things I've done is twofold: it makes me feel better when I see that I have accomplished many things; and in the morning meetings at work, I have a nicely compiled list of things that I did the previous day.
 
-I was also reading nice things about Meteor.js, and this seemed like good opportunity to get my hands wet.
+I have also been playing around with Meteor.js as a realtime framework, and I wanted to get my hands wet writing an actual app in it
 
 ## Installation
 
