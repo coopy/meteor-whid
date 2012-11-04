@@ -1,6 +1,12 @@
 var handleCheckboxClick = function(e) {
-    var taskId = $(e.target).parent().attr('id');
-    Task.complete(taskId);
+    var $target = $(e.target),
+        completed = $target.attr('checked'),
+        taskId = $target.parent().attr('id');
+    if (completed) {
+        Task.complete(taskId);
+    } else {
+        Task.unComplete(taskId);
+    }
 };
 
 var handleTaskTextClick = function(e) {
