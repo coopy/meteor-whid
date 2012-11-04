@@ -4,5 +4,5 @@ Template.header.date = function () {
 };
 
 Template.header.is_today = function() {
-    return (Session.get('tasksFilterTs') === Session.get('todayTs'));
+    return Session.equals('tasksFilterIsToday', true);
 };

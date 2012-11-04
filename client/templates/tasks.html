@@ -1,8 +1,14 @@
 <template name="tasks">
     <ul class="tasks">
-    {{# each todays_tasks}}
+    {{# each complete_tasks}}
         {{> task}}
     {{/each}}
+
+    {{# if is_today}}
+        {{# each incomplete_tasks}}
+            {{> task}}
+        {{/each}}
+    {{/if}}
 
     {{> add_task}}
     </ul>

@@ -19,28 +19,19 @@ var handleClickNav = function(e) {
         currentDayTs = thisDayTs;
     }
 
-    // Include any undone task in today's view
-    if (currentDayTs === thisDayTs) {
-        includeTodos = true;
-    }
-
     // Bracket the search
     nextDayTs = currentDayTs + oneDayMs;
 
     // Store filter and timestamp
+    Session.set('tasksFilterIsToday', (thisDayTs === currentDayTs));
     Session.set('tasksFilterTs', currentDayTs);
-
-    if (includeTodos) {
-        Session.set('tasksFilter', {$or: [{completedAt: {$gt: currentDayTs, $lt: nextDayTs}}, {completedAt: null}]});
-    } else {
-        Session.set('tasksFilter', {completedAt: {$gt: currentDayTs, $lt: nextDayTs, $ne: null}});
-    }
+    Session.set('tasksFilter', {completedAt: {$gt: currentDayTs, $lt: nextDayTs, $ne: null}});
 };
 
 // Hack because the nav template re-renders, losing state.
 // Hence, need to know about state in template.
 Template.nav.is_today = function() {
-    return Session.equals('tasksFilterTs', new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime());
+    return Session.equals('tasksFilterIsToday', true);
 };
 
 Template.nav.events({
