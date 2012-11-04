@@ -1,6 +1,7 @@
 <template name="task">
     <li class="well task {{# if completedAt}}done{{else}}todo{{/if}}" id="{{_id}}">
         <button class="close">&times;</button>
-        <span>{{text}}</span>
+        <input type="checkbox" class="pull-left" {{# if completedAt}}checked disabled{{/if}}/>
+        <p>{{text}}</p>
     </li>
 </template>
