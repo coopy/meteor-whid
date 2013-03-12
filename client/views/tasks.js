@@ -20,12 +20,12 @@ var gettasksFilter = function() {
 };
 
 Template.tasks.incomplete_tasks = function() {
-    var tasks = Tasks.find({completedAt: null}, {sort: {'createdAt': 'asc'}});
+    var tasks = Tasks.find({completedAt: null}, {sort: {'createdAt': 1}});
     return tasks;
 };
 
 Template.tasks.complete_tasks = function() {
-    var tasks = Tasks.find(gettasksFilter(), {sort: {'completedAt': 'asc'}});
+    var tasks = Tasks.find(gettasksFilter(), {sort: {'completedAt': 1}});
     return tasks;
 };
 
