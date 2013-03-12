@@ -12,7 +12,6 @@ var handleAddTask = function(e){
 
         Task.create(text);
         $el.val('');
-        $el.parent().hide();
     }
 };
 

@@ -10,6 +10,8 @@
         {{/each}}
     {{/if}}
 
-    {{> add_task}}
+    {{# if is_today}}
+        {{> add_task}}
+    {{/if}}
     </ul>
 </template>
