@@ -10,7 +10,10 @@ var Task = function(text) {
 // STATIC
 
 Task.create = function(text) {
-    Meteor.call('createTask', text);
+    var task = new Task(text);
+    var id = Tasks.insert(task);
+    Meteor.call('setTaskCreatedAt', id, function(){});
+    return id;
 };
 
 Task.complete = function(id) {
@@ -24,18 +27,19 @@ Task.unComplete = function(id) {
 if (Meteor.isServer) {
     // Task functionality
     Meteor.methods({
-        createTask: function (text) {
-            var task = new Task(text);
-            task.createdAt = Date.now(); // ms since epoch
-            return Tasks.insert(task);
+        setTaskCreatedAt: function (taskId) {
+            return Tasks.update({_id: taskId},
+                                {$set: {createdAt: Date.now() - 100000}});
         },
         completeTask: function (taskId) {
             //@TODO try using an instance method task.complete() - does it get server time?
-            return Tasks.update({_id: taskId, completedAt: null}, {$set: {completedAt: Date.now()}});
+            return Tasks.update({_id: taskId, completedAt: null},
+                                {$set: {completedAt: Date.now()}});
         },
         unCompleteTask: function (taskId) {
             //@TODO try using an instance method task.complete() - does it get server time?
-            return Tasks.update({_id: taskId, completedAt: {$ne: null}}, {$set: {completedAt: null}});
+            return Tasks.update({_id: taskId, completedAt: {$ne: null}},
+                                {$set: {completedAt: null}});
         }
     });
 }
