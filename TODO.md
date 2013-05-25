@@ -1,7 +1,3 @@
 TODO
 
-* User auth
-
-ISSUES
-
-* View doesn't update right away with the new task (latency)
+* User auth: https://github.com/coopy/meteor-whid/issues/1
