@@ -1,9 +1,5 @@
-var $handle,
-    $doneEls,
-    $todoEls,
-    now = new Date(),
+var now = new Date(),
     today = new Date(now.getFullYear(), now.getMonth(), now.getDate()),
-    nowTs = now.getTime(),
     todayTs = today.getTime();
 
 Session.set('todayTs', todayTs);
