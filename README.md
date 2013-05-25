@@ -36,7 +36,9 @@ The reactive contexts are hard to wrap your head around, and the syntax is weird
 
 When I have a template with no data binding, it keeps re-rendering the template anyway, just because another template bound to a collection is re-rendering.
 
-Performance is bad when re-rendering a list — Meteor.js is supposed to use a client-side cache of the Collection to render the list, but it's obviously making a round-trip to the server when I add a record to the tasks collection.
+~~Performance is bad when re-rendering a list — Meteor.js is supposed to use a client-side cache of the Collection to render the list, but it's obviously making a round-trip to the server when I add a record to the tasks collection.~~
+
+Update: Commit [72629df](https://github.com/coopy/meteor-whid/commit/72629df) fixes this - I was waiting for the server to create a document before I inserted it into the collection.
 
 ## Contact
 
