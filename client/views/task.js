@@ -6,7 +6,7 @@
  * Event handler for the "complete/uncomplete task" checkbox control
  * @param {object} e Event object
  */
-var handleCheckboxClick = function(e) {
+var handleTaskCheckBoxClick = function(e) {
     var $target = $(e.target),
         completed = $target.attr('checked'),
         taskId = $target.parent().attr('id');
@@ -60,13 +60,13 @@ var handleTaskTextClick = function(e) {
  * Removes (deletes) a task.
  * @param e
  */
-var handleRemoveTask = function(e) {
+var handleTaskCloseClick = function(e) {
     var taskId = $(e.target).parent().attr('id');
     Tasks.remove({_id: taskId});
 };
 
 Template.task.events({
-    'change .task input[type="checkbox"]': handleCheckboxClick,
-    'click .task .close': handleRemoveTask,
+    'change .task input[type="checkbox"]': handleTaskCheckBoxClick,
+    'click .task .close': handleTaskCloseClick,
     'click .task p': handleTaskTextClick
 });
