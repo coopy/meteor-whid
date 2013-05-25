@@ -1,7 +1,18 @@
+/**
+ *  "Add Task" View - handles entering a new task and persisting it.
+ */
+
+/**
+ * Event handler for "Add Task" text input box.
+ * Designed to listen for keyup and blur events.
+ * Aborts if keycode isn't "Return" or if value is zero-length.
+ * @param {object} e Event object
+ */
 var handleAddTask = function(e){
 
     // Enter new task if return was pressed, or if this event is blur.
-    if (e.type === 'blur' || (e.type === 'keyup' && e.keyCode === 13)) {
+    if (e.type === 'blur' ||
+        (e.type === 'keyup' && e.keyCode === 13)) {
         var $el = $(e.target),
             text = $.trim($el.val());
 
@@ -11,6 +22,8 @@ var handleAddTask = function(e){
         }
 
         Task.create(text);
+
+        // Reset UI state
         $el.val('');
     }
 };

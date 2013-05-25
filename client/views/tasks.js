@@ -1,3 +1,7 @@
+/**
+ * Task list View
+ */
+
 var now = new Date(),
     today = new Date(now.getFullYear(), now.getMonth(), now.getDate()),
     todayTs = today.getTime();

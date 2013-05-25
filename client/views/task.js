@@ -1,3 +1,11 @@
+/**
+ * Single Task View
+ */
+
+/**
+ * Event handler for the "complete/uncomplete task" checkbox control
+ * @param {object} e Event object
+ */
 var handleCheckboxClick = function(e) {
     var $target = $(e.target),
         completed = $target.attr('checked'),
@@ -9,11 +17,20 @@ var handleCheckboxClick = function(e) {
     }
 };
 
+/**
+ * Event handler for task text click event.
+ * Lets user edit task text.
+ * @param {object} e Event object
+ */
 var handleTaskTextClick = function(e) {
     var $target            = $(e.target),
         $parent            = $target.parent(),
         $input             = $('<input type="text" class="edit input-xlarge" autofocus/>'),
         text               = $target.text(),
+        /**
+         * Handle edit end
+         * @param {object} editEvent Event object
+         */
         handleTaskTextEdit = function(editEvent) {
             var escPressed    = (editEvent.type === 'keyup' && editEvent.keyCode === 27),
                 returnPressed = (editEvent.type === 'keyup' && editEvent.keyCode === 13);

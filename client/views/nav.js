@@ -1,3 +1,7 @@
+/**
+ * Navigation bar View
+ */
+
 var oneDayMs = (1000 * 60 * 60 * 24);
 var handleClickNav = function(e) {
     e.preventDefault();
