@@ -2,29 +2,29 @@
  * Navigation bar View
  */
 
-var oneDayMs = (1000 * 60 * 60 * 24);
+var ONE_DAY_MS = (1000 * 60 * 60 * 24);
 var handleClickNav = function(e) {
     e.preventDefault();
     var $target = $(e.target),
         currentDayTs = Session.get('tasksFilterTs'),
-        thisDayTs = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime(),
         nextDayTs,
-        includeTodos = false;
+        now = new Date(),
+        thisDayTs = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
 
     // Move timestamp pointer
     if ($target.parent().hasClass('back')) {
         // Navigate back one day
-        currentDayTs -= oneDayMs;
+        currentDayTs -= ONE_DAY_MS;
     } else if ($target.parent().hasClass('forward') && !$target.parent().hasClass('disabled')) {
         // Navigate one day forward
-        currentDayTs += oneDayMs;
+        currentDayTs += ONE_DAY_MS;
     } else {
         // Navigate to today
         currentDayTs = thisDayTs;
     }
 
     // Bracket the search
-    nextDayTs = currentDayTs + oneDayMs;
+    nextDayTs = currentDayTs + ONE_DAY_MS;
 
     // Store filter and timestamp
     Session.set('tasksFilterIsToday', (thisDayTs === currentDayTs));
