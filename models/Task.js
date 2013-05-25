@@ -1,5 +1,5 @@
 // Constructor
-var Task = function(text) {
+Task = function(text) {
     this.text = text;
     this.createdAt = Date.now();
     this.completedAt = null;
