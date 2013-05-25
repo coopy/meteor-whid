@@ -53,10 +53,20 @@ var handleTaskTextClick = function(e) {
         $input.val(text);
         $target.remove();
         $parent.append($input);
+};
 
+/**
+ * Event handler for task "close" button.
+ * Removes (deletes) a task.
+ * @param e
+ */
+var handleRemoveTask = function(e) {
+    var taskId = $(e.target).parent().attr('id');
+    Tasks.remove({_id: taskId});
 };
 
 Template.task.events({
     'change .task input[type="checkbox"]': handleCheckboxClick,
+    'click .task .close': handleRemoveTask,
     'click .task p': handleTaskTextClick
 });
