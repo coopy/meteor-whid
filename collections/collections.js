@@ -1,14 +1,4 @@
 /**
- * Collections
- */
-
-/**
- * All of the Tasks - completed and pending.
- * @type {Meteor.Collection}
- */
-Tasks = new Meteor.Collection('Tasks');
-
-/**
  * Static enumeration of weekdays
  * @type {array}
  */
